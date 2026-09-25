@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <title>Golden Knox — Diagnóstico</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <span class="eyebrow">GOLDEN KNOX</span>
+      <h1>Diagnóstico de Knox Manage</h1>
+      <p>
+        Verifica o ambiente Android/Samsung no navegador e cruza os sinais com o
+        tipo de gestão que selecionares. O navegador não consegue ler diretamente
+        Device Owner, Profile Owner ou o estado interno do Knox.
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>1. Detecção do navegador</h2>
+      <div id="deviceFacts" class="facts"></div>
+      <button id="refresh" class="secondary">Atualizar deteção</button>
+    </section>
+
+    <section class="card">
+      <h2>2. O que vês no telefone?</h2>
+
+      <label>Existe um perfil de trabalho?</label>
+      <select id="workProfile">
+        <option value="unknown">Não sei</option>
+        <option value="yes">Sim</option>
+        <option value="no">Não</option>
+      </select>
+
+      <label>Vês o Knox Manage Agent instalado?</label>
+      <select id="agent">
+        <option value="unknown">Não sei</option>
+        <option value="yes">Sim</option>
+        <option value="no">Não</option>
+      </select>
+
+      <label>O aparelho mostra uma mensagem de gestão/organização ao arrancar ou nas Definições?</label>
+      <select id="managedMessage">
+        <option value="unknown">Não sei</option>
+        <option value="yes">Sim</option>
+        <option value="no">Não</option>
+      </select>
+
+      <label>Consegue comunicar normalmente com a rede da organização?</label>
+      <select id="connected">
+        <option value="unknown">Não sei</option>
+        <option value="yes">Sim</option>
+        <option value="no">Não</option>
+      </select>
+
+      <label>O telefone é de empresa / totalmente gerido?</label>
+      <select id="fullyManaged">
+        <option value="unknown">Não sei</option>
+        <option value="yes">Sim</option>
+        <option value="no">Não</option>
+      </select>
+
+      <button id="diagnose">Executar diagnóstico</button>
+    </section>
+
+    <section class="card result" id="resultCard" hidden>
+      <div class="status" id="status"></div>
+      <h2 id="resultTitle"></h2>
+      <p id="resultBody"></p>
+      <div id="steps"></div>
+      <div class="actions">
+        <button id="openAgent" class="secondary">Tentar abrir o Knox Manage Agent</button>
+        <a class="secondary link" href="https://play.google.com/store/apps/details?id=com.sds.emm.cloud.knox.samsung" target="_blank" rel="noopener">
+          Abrir página do Knox Manage na Play Store
+        </a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3. Métodos oficiais</h2>
+      <div class="method">
+        <strong>Work Profile</strong>
+        <p>Quando a consola oferece “Remove Work Profile only”, o perfil de trabalho pode ser removido sem factory reset.</p>
+      </div>
+      <div class="method">
+        <strong>Dispositivo ligado</strong>
+        <p>O administrador pode enviar “Unenroll Device”. Se a política do Agent permitir, o próprio utilizador pode pedir o unenrollment/desinstalar o Agent.</p>
+      </div>
+      <div class="method">
+        <strong>Dispositivo desligado</strong>
+        <p>O administrador pode gerar um Offline Unenrollment Code. No Agent: Settings → Offline Unenrollment → introduzir o código → End.</p>
+      </div>
+      <div class="method">
+        <strong>Totalmente gerido / KME</strong>
+        <p>O unenrollment pode implicar factory reset. Em Android Enterprise, o administrador pode também ter de desassociar/remover o perfil do Knox Mobile Enrollment para evitar novo enrollment.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Diagnóstico local: nenhuma informação é enviada por este site. Os dados escolhidos ficam apenas no navegador enquanto a página estiver aberta.</p>
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
